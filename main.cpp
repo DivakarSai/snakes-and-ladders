@@ -8,11 +8,6 @@
 #include "dice.cpp"
 using namespace std;
 
-
-
-
-
-
 int main() {
     // Your code here
     int num_snakes = 0;
@@ -37,11 +32,13 @@ int main() {
 
     cin >> num_players;
 
+
     // start the game
 
     vector<Player> players;
     for(int i = 0; i < num_players; i++) {
         players.push_back(Player());
+        cin >> players[i].name;
     }
 
     bool game_over = false;
@@ -53,11 +50,11 @@ int main() {
             int dice_val = dice.roll();
             // if new position is greater than 100, do not move
             if(players[i].position + dice_val > 100) {
-                cout << "Player " << i + 1 << " rolled a " << dice_val << " and is now at position " << players[i].position << endl;
+                cout <<players[i].name<<  " rolled a " << dice_val << " and is now at position " << players[i].position << endl;
                 continue;
             }
             players[i].position += dice_val;
-            cout << "Player " << i + 1 << " rolled a " << dice_val << " and is now at position " << players[i].position << endl;
+            cout << players[i].name<< " rolled a " << dice_val << " and is now at position " << players[i].position << endl;
 
             for(int j = 0; j < board.snakes.size(); j++) {
                 if(players[i].position == board.snakes[j].start_position) {
@@ -72,7 +69,7 @@ int main() {
             }
 
             if(players[i].position >= 100) {
-                cout << "Player " << i + 1 << " wins!" << endl;
+                cout << players[i].name << " wins!" << endl;
                 game_over = true;
                 break;
             }
